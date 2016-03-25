@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="/form" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.zoekterm.label }} {{form.zoekterm}}<br />
+    {{form.overheid.label}} {{ form.overheid }}<br />
+    {{form.ontvanger.label}} {{ form.ontvanger }}<br />
+    {{form.regeling.label}} {{ form.regeling }}<br />
+    {{ form.beleidsartikel.label}} {{ form.beleidsartikel}}<br />
+    {{form.submit.label}} {{ form.submit }}
+</form>
+{% endblock %}
