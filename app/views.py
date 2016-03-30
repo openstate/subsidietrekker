@@ -31,6 +31,9 @@ def form():
         return render_template('form.html', form=form)
 
 
+
+# NB: the following two 'streamer' functions are being reworked into segmented functions in elastic.py 
+
 @app.route('/_ajax_streamer')
 def ajax_streamer():
 
