@@ -6,32 +6,33 @@ Elastic.py
 '''
 from elasticsearch import Elasticsearch
 
-
-# connect to ES and create ElasticSearch instance
 ES_CLUSTER = 'http://localhost:9200'
 ES_INDEX = 'sub'
 ES_TYPE = 'item'
 es = Elasticsearch(ES_CLUSTER)
 
-#receive input from form
+
 def receiver(form_data):
+    '''receive input from form '''
     pass
 
 
-# build ES query using cleaned data from receiver
 def query_builder(cleaned_data):
+    ''' build ES query using cleaned data from receiver '''
     pass
 
 
-#query ES
+
 def query_es(query_data):
+    ''' query ES '''
     pass
 
 
-# pass query results to front
 def pass_to_table(query_results):
+    ''' pass query results to datatables '''
     pass
 
 
 def pass_to_viz(query_results):
+    ''' pass query results to d3 '''
     pass
