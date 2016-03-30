@@ -8,7 +8,7 @@ Holds the different form classes. Uses wtforms and the flask_wtf wrapper
 '''
 
 from flask_wtf import Form
-from wtforms import StringField, IntegerField, DateTimeField, SubmitField, BooleanField #, SelectField
+from wtforms import StringField, IntegerField, DateTimeField, SelectField, SubmitField, BooleanField, SelectField
 from wtforms.validators import InputRequired
 
 # class SubmitSubsidieForm(Form):
@@ -26,6 +26,10 @@ class SimpleSearch(Form):
     ontvanger = BooleanField('Ontvanger')
     regeling = BooleanField('Regeling')
     beleidsartikel = BooleanField('Beleidsartikel')
+    query_type = SelectField('Query_type', choices=[('simple', 'Simple Search'), ('compare', 'Compare Search')])
+    table = BooleanField('Tabel')
+    viz = BooleanField('Visualisatie')
+    raw = BooleanField('Exacte zoekterm')
     submit = SubmitField('Submit')
 
 class CompareSearch(Form):

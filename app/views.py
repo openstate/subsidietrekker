@@ -26,7 +26,7 @@ def viz():
 def form():
     form = SimpleSearch()
     if request.method == 'POST':
-        return jsonify(form.data)
+        return json.dumps(receiver(**form.data))
     elif request.method == 'GET':
         return render_template('form.html', form=form)
 
