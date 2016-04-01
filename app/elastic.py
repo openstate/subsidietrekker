@@ -28,18 +28,19 @@ def receiver(**form_data):
     data_dict['settings'] = settings_dict
 
     form_dict['query'] = form_data['zoekterm']
-    fields = list()
-    if form_data['overheid'] == True:
-        fields.append('overheid')
-    if form_data['ontvanger'] == True:
-        fields.append('ontvanger')
-    if form_data['regeling'] == True:
-        fields.append('regeling')
-    if form_data['beleidsartikel'] == True:
-        fields.append('beleidsartikel')
+    fields = [f for f in ['overheid', 'ontvanger', 'regeling', 'beleidsartikel'] if form_data[f]]
+    # if form_data['overheid'] == True:
+    #     fields.append('overheid')
+    # if form_data['ontvanger'] == True:
+    #     fields.append('ontvanger')
+    # if form_data['regeling'] == True:
+    #     fields.append('regeling')
+    # if form_data['beleidsartikel'] == True:
+    #     fields.append('beleidsartikel')
     form_dict['fields'] = fields
     data_dict['form'] = form_dict
 
+    print data_dict
     return query_builder(**data_dict)
 
 
