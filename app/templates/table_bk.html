@@ -1,10 +1,13 @@
+{% extends 'base.html' %}
+
+{% block table %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Subsidietrekker.nl</title>
-    <!-- DATATABLES -->
+    <title>Subsidietrekker 2.0</title>
+
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
@@ -19,33 +22,45 @@
     <!--<script type="text/javascript">-->
         <!--var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};-->
     <!--</script>-->
-
-    <!-- NVD3 VIZ -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css">
-
-    <script src="../../_viz_streamer"></script>
-
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.min.js"></script>
-
-    <style>
-        #chart svg {
-            height: 400px;
-        }
-    </style>
-
 </head>
 <body>
-    {% block form %}
-    {% endblock %}
-    <hr>
-    {% block viz %}
-    {% endblock %}
-    <hr>
-    {% block table %}
-    {% endblock %}
+    <table id="subs_list" class="display">
+        <thead>
+                <tr>
+                    <th>Overheid</th>
+                    <th>Regeling</th>
+                    <th>Ontvanger</th>
+                    <th>Beleid</th>
+                    <th>Realisatie</th>
+                    <th>Jaar</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+            <tr>
+                <th>{{d.overheid}}</th>
+                <th>{{d.regeling}}</th>
+                <th>{{d.ontvanger}}</th>
+                <th>{{d.beleid}}</th>
+                <th>{{d.realisatie}}</th>
+                <th>{{d.jaar}}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                    <th>Overheid</th>
+                    <th>Regeling</th>
+                    <th>Ontvanger</th>
+                    <th>Beleid</th>
+                    <th>Realisatie</th>
+                    <th>Jaar</th>
+            </tr>
+        </tfoot>
+    </table>
 
-    
+
+
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 
@@ -58,3 +73,5 @@
     <script src="../static/js/datatables_test.js"></script>
 </body>
 </html>
+{% endblock %}
+

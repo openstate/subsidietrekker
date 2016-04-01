@@ -48,12 +48,13 @@ def query_builder(**cleaned_data):
     ''' build ES query using cleaned data from receiver '''
     query_string =  {
                         "query": {
-                        "simple_query_string": {
-                            "query": cleaned_data['form']['query'],
-                            "analyzer": "snowball",
-                            "fields": cleaned_data['form']['fields'],
-                            "default_operator": "and"
-                        }}
+                            "simple_query_string": {
+                                "query": cleaned_data['form']['query'],
+                                "analyzer": "snowball",
+                                "fields": cleaned_data['form']['fields'],
+                                "default_operator": "and"
+                            }
+                        }
                     }
 
     return query_es(query_string)

@@ -12,7 +12,17 @@ from app import app
 from elastic import *
 from forms import SimpleSearch
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
+def demo():
+    form = SimpleSearch()
+    if request.method == 'POST':
+        print form.data
+        return json.dumps(receiver(**form.data))
+    elif request.method == 'GET':
+        return render_template('demo.html', form=form)
+
+
+@app.route('/table')
 def table():
     return render_template('table.html')
 

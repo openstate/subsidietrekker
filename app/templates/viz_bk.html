@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
 
 {% block viz %}
+<!DOCTYPE html>
+<!-- <html>
+<head>
+    <title>ElasticSearch into NVD3.js demo</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css">
+
+    <script src="../../_viz_streamer"></script>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.min.js"></script>
+
+    <style>
+        #chart svg {
+            height: 400px;
+        }
+    </style>
+
+</head> -->
+<body>
 <script>
 var data;
 
@@ -28,9 +48,12 @@ d3.json('http://localhost:5000/_viz_streamer', function(error, json) {
 });
 </script>
 
-<!-- <div id="searchbar">
+<div id="searchbar">
     <form method="GET" action="."></form>
-</div> -->
+</div>
 
 <div id="chart"><svg></svg></div>
+
+</body>
+</html>
 {% endblock %}
