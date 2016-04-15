@@ -5,7 +5,7 @@ views.py
 
 '''
 
-from flask import render_template, request, jsonify
+from flask import render_template, request
 import json
 
 from app import app
@@ -98,10 +98,15 @@ def streamer():
     def d3_streamer():
         return {}
 
-    da_dump = datatables_streamer()
-    #da_dump['datatables'] = datatables_streamer()
-    #da_dump['d3'] = d3_streamer()
 
+    
+    datatables_dict = datatables_streamer()
+    d3_dict = d3_streamer()
+
+    for d in [datatables_dict, d3_dict]:
+        da_dump.update(d)
+
+    print da_dump
     return json.dumps(da_dump)
 
 
