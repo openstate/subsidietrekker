@@ -22,6 +22,7 @@ def streamer():
         search = request.args.get('search[value]')
         #fields = request.args.get('buttons')
         draw = request.args.get('draw')
+        sort = request.args.get('order[0][dir]')
         result = {}
 
 
@@ -33,14 +34,15 @@ def streamer():
                                 "fields": ['_all'], #fields,
                                 "default_operator": "and"
                             }
-                        }
+                        },
+                        "sort": {"overheid": {"order": sort}}
                     }
 
 
-        if search == '':
-            query = es.search(index=ES_INDEX)
-        else:
-            query = es.search(index=ES_INDEX, size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
+        # if search == '':
+        #     query = es.search(index=ES_INDEX)
+        # else:
+        query = es.search(index=ES_INDEX, size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
 
         total_set = es.search(index=ES_INDEX)
         total_records = total_set['hits']['total']

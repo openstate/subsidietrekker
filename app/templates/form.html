@@ -1,18 +1,10 @@
-{% extends 'base.html' %}
-
 {% block form %}
-<form action="/form" method="POST">
+<form action="/demo" method="POST">
     {{ form.hidden_tag() }}
     {{ form.zoekterm.label }} {{form.zoekterm}}<br />
     {{form.overheid.label}} {{ form.overheid }}<br />
     {{form.ontvanger.label}} {{ form.ontvanger }}<br />
     {{form.regeling.label}} {{ form.regeling }}<br />
     {{ form.beleidsartikel.label}} {{ form.beleidsartikel}}<br />
-    <b>Query settings:</b><br />
-    {{ form.query_type.label}} {{ form.query_type}}<br />
-    {{ form.table.label}} {{ form.table}}<br />
-    {{ form.viz.label}} {{ form.viz}}<br />
-    {{ form.raw.label}} {{ form.raw}}<br />
-    {{form.submit.label}} {{ form.submit }}
 </form>
 {% endblock %}

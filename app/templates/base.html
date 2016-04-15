@@ -18,6 +18,9 @@
     <!-- D3 Scripts-->
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="https://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.min.js"></script>
+    <script type="text/javascript">
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
 
 </head>
 {% endblock %}
