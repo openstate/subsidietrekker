@@ -12,15 +12,26 @@ from app import app
 from elastic import *
 from forms import SimpleSearch
 
-@app.route('/', methods=['GET', 'POST'])
-def demo():
-    form = SimpleSearch()
-    if request.method == 'POST':
-        print form.data
-        return json.dumps(receiver(**form.data))
-    elif request.method == 'GET':
-        return render_template('demo.html', form=form)
+@app.route('/')
+def home():
+    return render_template('index.html')
 
+@app.route('/demo')#, methods=['GET', 'POST'])
+def demo():
+    # form = SimpleSearch()
+    # if request.method == 'POST':
+    #     print form.data
+    #     return json.dumps(receiver(**form.data))
+    # elif request.method == 'GET':
+    return render_template('demo.html')#, form=form)
+
+@app.route('/data')
+def over_data():
+    return render_template('over_data.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 @app.route('/table')
 def table():
@@ -41,47 +52,61 @@ def form():
     elif request.method == 'GET':
         return render_template('form.html', form=form)
 
+# The new steamer function WIP
+@app.route('/_streamer')
+def streamer():
+
+    da_dump = {}
+
+    def datatables_streamer():
+
+        search = request.args.get('search[value]')
+        #fields = request.args.get('buttons')
+        draw = request.args.get('draw')
+        result = {}
 
 
-# NB: the following two 'streamer' functions are being reworked into segmented functions in elastic.py 
-
-@app.route('/_ajax_streamer')
-def ajax_streamer():
-
-    values = request.args.get('search[value]')
-
-    q_empty = {"query": {"match_all": {}}}
-    q_search ={
-                "query":
-                    {"multi_match": {
-                        "query": values,
-                        "fields": ["overheid", "regeling", "ontvanger"]
+        es_query = {
+                        "query": {
+                            "simple_query_string": {
+                                "query": search,
+                                "analyzer": "snowball",
+                                "fields": ['_all'], #fields,
+                                "default_operator": "and"
+                            }
+                        }
                     }
-                }
-            }
 
-    if values == '':
-        query = q_empty
-    else:
-        query = q_search
 
-    t_res = es.search(index=ES_INDEX)
-    f_res = es.search(index=ES_INDEX, size=request.args.get('length'), from_=request.args.get('start'), body=query)
-    records_total = t_res['hits']['total']
-    records_filtered = f_res['hits']['total']
-    draw = request.args.get('draw')
+        if search == '':
+            query = es.search(index=ES_INDEX)
+        else:
+            query = es.search(index=ES_INDEX, size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
 
-    hits = f_res['hits']['hits']
-    data = [hit['_source'] for hit in hits]
+        total_set = es.search(index=ES_INDEX)
+        total_records = total_set['hits']['total']
+        
+        found_set = query
+        found_total_records = found_set['hits']['total']
+        found_results = [result['_source'] for result in found_set['hits']['hits']]
 
-    result = {}
-    result['draw'] = draw
-    result['recordsTotal'] = records_total
-    result['recordsFiltered'] = records_filtered
-    result['data'] = data
+        result['draw'] = draw
+        result['recordsTotal'] = total_records
+        result['recordsFiltered'] = found_total_records
+        result['data'] = found_results
 
-    print data
-    return json.dumps(result)
+        return result
+
+
+    def d3_streamer():
+        return {}
+
+    da_dump = datatables_streamer()
+    #da_dump['datatables'] = datatables_streamer()
+    #da_dump['d3'] = d3_streamer()
+
+    return json.dumps(da_dump)
+
 
 
 @app.route('/_viz_streamer')
@@ -136,11 +161,11 @@ def viz_streamer():
         }
     }
 
-    query = es.search(index=ES_INDEX, body=vaakst_uitkerende_overheden)
+    query = es.search(index=ES_INDEX, body=afzonderlijke_subsidie_ontvangers)
 
 
 
-    hits = query['aggregations']['vaakst_uitkerende_overheden']['buckets']
+    hits = query['aggregations']['afzonderlijke_subsidie_ontvangers']['buckets']
     data = [hit for hit in hits]
 
     print data

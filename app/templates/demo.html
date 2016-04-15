@@ -1,24 +1,56 @@
 {% extends 'base.html' %}
 
 
-{% block form %}
-<form action="/form" method="POST">
-    {{ form.hidden_tag() }}
-    {{ form.zoekterm.label }} {{form.zoekterm}}<br />
-    {{form.overheid.label}} {{ form.overheid }}<br />
-    {{form.ontvanger.label}} {{ form.ontvanger }}<br />
-    {{form.regeling.label}} {{ form.regeling }}<br />
-    {{ form.beleidsartikel.label}} {{ form.beleidsartikel}}<br />
-    <b>Query settings:</b><br />
-    {{ form.query_type.label}} {{ form.query_type}}<br />
-    {{ form.table.label}} {{ form.table}}<br />
-    {{ form.viz.label}} {{ form.viz}}<br />
-    {{ form.raw.label}} {{ form.raw}}<br />
-    {{form.submit.label}} {{ form.submit }}
-</form>
+{% block content %}
+<section id="demo">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Demo</h2>
+                <hr>
+            </div>
+        
+{% block viz %}
+<script>
+var data;
+
+d3.json('http://localhost:5000/_viz_streamer', function(error, json) {
+    if (error) return console.warn(error);
+    data = json;
+
+    height = 960;
+    width = 540;
+
+    nv.addGraph(function() {
+        var chart = nv.models.pieChart()
+            .x(function(d) {return d.key})
+            .y(function(d) {return d.doc_count})
+            .showLabels(true);
+
+        d3.select("#chart svg")
+            .datum(data)
+            .transition().duration(350)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+        return chart;
+    });
+});
+</script>
+
+<section id="chart">
+<div id="chart">
+<div class="col-lg-12 text-center">
+<h3>Viz</h3><hr></div>
+<svg></svg></div></section>
 {% endblock %}
 
 {% block table %}
+
+<section id="table">
+<div class="col-lg-12 text-center">
+<h3>Table</h3><hr></div>
     <table id="subs_list" class="display">
         <thead>
                 <tr>
@@ -52,41 +84,8 @@
                     <th>Jaar</th>
             </tr>
         </tfoot>
-    </table>
+    </table></section>
+    </div></div></section>
 {% endblock %}
 
-
-{% block viz %}
-<script>
-var data;
-
-d3.json('http://localhost:5000/_viz_streamer', function(error, json) {
-    if (error) return console.warn(error);
-    data = json;
-
-    height = 960;
-    width = 540;
-
-    nv.addGraph(function() {
-        var chart = nv.models.pieChart()
-            .x(function(d) {return d.key})
-            .y(function(d) {return d.doc_count})
-            .showLabels(true);
-
-        d3.select("#chart svg")
-            .datum(data)
-            .transition().duration(350)
-            .call(chart);
-
-        nv.utils.windowResize(chart.update);
-        return chart;
-    });
-});
-</script>
-
-<!-- <div id="searchbar">
-    <form method="GET" action="."></form>
-</div> -->
-
-<div id="chart"><svg></svg></div>
 {% endblock %}

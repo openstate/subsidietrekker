@@ -1,0 +1,12 @@
+/* 
+ * Custom CSS
+ *
+ */
+
+#subs_list {
+        width: 50%;
+    }
+
+#chart svg {
+        height: 400px;
+    }
