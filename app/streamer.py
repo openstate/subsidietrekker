@@ -58,6 +58,7 @@ def streamer():
 
 
     def d3_streamer():
+        
         return {}
 
 

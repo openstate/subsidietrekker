@@ -1,6 +1,12 @@
+// 
+// Subsidietrekker.nl
+// 
+//  d3_script.js
+// 
+
 var data;
 
-d3.json('http://localhost:5000/_viz_streamer', function(error, json) {
+d3.json('http://localhost:5000/_streamer', function(error, json) {
     if (error) return console.warn(error);
     data = json;
 

@@ -1,3 +1,9 @@
+// 
+// Subsidietrekker.nl
+// 
+// datatables_script.js
+// 
+
 $(function() {
 
     $("#subs_list").DataTable({
