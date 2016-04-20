@@ -15,7 +15,7 @@
 {% block form %}
 <section id="form">
     <div class="col-lg-12 text-center">
-        <form action="/demo" method="POST">
+        <form action="/demo" method="POST" name="SearchForm">
             {{ form.hidden_tag() }}
             {{ form.zoekterm.label }} {{form.zoekterm}} |
             {{form.overheid.label}} {{ form.overheid }} |
@@ -75,8 +75,16 @@
 <section class="col-sm-6" id="chart">
 <div id="chart">
 <div class="col-lg-12 text-center">
-<h3>Viz</h3><hr></div>
-<svg></svg></div></section>
+<h3>Viz</h3><hr>
+<form action="/demo" method="POST" name="VizForm">
+    {{ vizform.hidden_tag() }}
+    {{ vizform.stats.label }} {{vizform.stats}}
+</div>
+<svg></svg></div>
+</form>
+</section>
+
+
 {% endblock %}
 
 {% endblock %}

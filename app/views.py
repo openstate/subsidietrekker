@@ -7,7 +7,7 @@ views.py
 
 from flask import render_template, request
 from app import app
-from forms import SimpleSearch
+from forms import SimpleSearch, VizOptions
 
 @app.route('/')
 def home():
@@ -15,12 +15,9 @@ def home():
 
 @app.route('/demo', methods=['GET', 'POST'])
 def demo():
-    form = SimpleSearch()
-    if request.method == 'POST':
-        print form.data
-        return json.dumps(receiver(**form.data))
-    elif request.method == 'GET':
-        return render_template('demo.html', form=form)
+    searchform = SimpleSearch()
+    vizform = VizOptions()
+    return render_template('demo.html', form=searchform, vizform=vizform)
 
 @app.route('/data')
 def over_data():
