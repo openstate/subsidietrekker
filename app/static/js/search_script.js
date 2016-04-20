@@ -5,7 +5,12 @@
 // 
 
 
+// $("form").change(function (event) {
+//     console.log($(this).serializeArray());
+//     event.preventDefault;
+// });
+
 $("form").change(function (event) {
-    console.log($(this).serializeArray());
-    event.preventDefault;
+    $.get("", $(this).serializeArray());
+    // $.post("", $(this).serializeArray());
 });
