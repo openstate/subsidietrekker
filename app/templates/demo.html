@@ -15,7 +15,7 @@
 {% block form %}
 <section id="form">
     <div class="col-lg-12 text-center">
-        <form action="/demo" method="POST" name="SearchForm">
+        <form action="/_form_streamer" method="POST" name="SearchForm">
             {{ form.hidden_tag() }}
             {{ form.zoekterm.label }} {{form.zoekterm}} |
             {{form.overheid.label}} {{ form.overheid }} |
@@ -76,7 +76,7 @@
 <div id="chart">
 <div class="col-lg-12 text-center">
 <h3>Viz</h3><hr>
-<form action="/demo" method="POST" name="VizForm">
+<form action="/_form_streamer" method="POST" name="VizForm">
     {{ vizform.hidden_tag() }}
     {{ vizform.stats.label }} {{vizform.stats}}
 </div>

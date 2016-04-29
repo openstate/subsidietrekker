@@ -11,11 +11,25 @@ import json
 from app import app
 from elastic import *
 
+
+@app.route('/_form_streamer', methods=['GET', 'POST'])
+def form_streamer():
+    simple_search_dump = request.args.get('overheid') 
+
+    # print simple_search_dump
+    return(simple_search_dump)
+
+
 # The new steamer function WIP
-@app.route('/_streamer')
-def streamer():
+@app.route('/_streamer', methods=['GET', 'POST'])
+def streamer(simple_search_dump={}):
+
+
 
     da_dump = {}
+
+    # simple_search_dump = request.args.get('overheid') 
+    viz_options_dump = {}
 
     def datatables_streamer():
 
@@ -71,7 +85,9 @@ def streamer():
     for d in [datatables_dict, d3_dict]:
         da_dump.update(d)
 
-    print da_dump
+    # print da_dump
+    
+    print ('passed dump: %s' % simple_search_dump)
     return json.dumps(da_dump)
 
 
@@ -135,5 +151,5 @@ def viz_streamer():
     hits = query['aggregations']['afzonderlijke_subsidie_ontvangers']['buckets']
     data = [hit for hit in hits]
 
-    print data
+    # print data
     return json.dumps(data)
