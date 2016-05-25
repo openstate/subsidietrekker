@@ -96,59 +96,33 @@ def streamer(simple_search_dump={}):
 def viz_streamer():
     # test = [{'overheid': 1, 'realisatie': 34}, {'overheid': 1, 'realisatie': 34}, {'overheid': 1, 'realisatie': 34}]
 
-    # ontvanger
-    top10 = {
-                "filter" : {
-                    "match_all" : { }
-                },
-                "sort": [
-                    {
-                        "realisatie": {
-                            "order": "desc"
+    search = request.args.get('query') or 'test'
+
+    es_query = {
+                    "query": {
+                        "simple_query_string": {
+                            "query": search,
+                            "analyzer": "snowball",
+                            "fields": ['_all'], #fields,
+                            "default_operator": "and"
                         }
+                    },
+                    "size": 0,
+                    "aggs": {
+                        "ontvangers": {
+                            "terms": {
+                                "field": "ontvanger.raw"
+                            }
+                        }
+                    }
                 }
-                ],
-                "size": 10
-            }
 
-    afzonderlijke_subsidie_ontvangers = {
-        "size": 0,
-        "aggs": {
-            "afzonderlijke_subsidie_ontvangers": {
-                "terms": {
-                    "field": "ontvanger.raw"
-                }
-            }
-        }
-    }
 
-    # overheid
-    vaakst_uitkerende_overheden = {
-        "aggs": {
-            "vaakst_uitkerende_overheden": {
-                "terms": {
-                    "field": "overheid.raw"
-                }
-            }
-        }
-    }
-
-    # regeling
-    meest_gebruikte_regeling = {
-        "aggs": {
-            "meest_gebruikte_regeling": {
-                "terms": {
-                    "field": "regeling.raw"
-                }
-            }
-        }
-    }
-
-    query = es.search(index=ES_INDEX, body=afzonderlijke_subsidie_ontvangers)
+    query = es.search(index=ES_INDEX, body=es_query)
 
 
 
-    hits = query['aggregations']['afzonderlijke_subsidie_ontvangers']['buckets']
+    hits = query['aggregations']['ontvangers']['buckets']
     data = [hit for hit in hits]
 
     # print data

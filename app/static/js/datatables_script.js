@@ -6,7 +6,8 @@
 
 $(function() {
 
-    $("#subs_list").DataTable({
+    var table = $("#subs_list")
+    .DataTable({
 
         "processing": true,
         "serverSide": true,
@@ -27,7 +28,16 @@ $(function() {
             { "data": "beleid", "name": "beleid" },
             { "data": "realisatie", "name": "realisatie" },
             { "data": "jaar", "name": "jaar" }
-        ]
+        ],
+
+
 
     });
+
+    table.on( 'order.dt',  function () { console.log( 'Order' ); } )
+    .on( 'search.dt', function () {
+        console.log( 'Search for '+table.search() );
+    } )
+    .on( 'page.dt',   function () { console.log( 'Page' ); } )
+
 })
