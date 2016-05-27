@@ -4,6 +4,14 @@
 // datatables_script.js
 // 
 
+var entities = {
+    overheid: true,
+    ontvanger: true,
+    regeling: true,
+    Beleidsartikel: true
+
+}
+
 $(function() {
 
     var table = $("#subs_list")
@@ -19,6 +27,43 @@ $(function() {
                 "tast": 12342542
             }
         },
+
+        // dom: 'Bfrtip',
+        // buttons: [
+        //         'excel',
+        //         'print'
+        // ],
+        dom: 'Bfrtip',        
+        buttons: [
+            {
+                text: 'Overheid',
+                action: function ( e, dt, node, config ) {
+                    alert( 'Overheid!' );                   
+                }                
+            },
+
+            {
+                text: 'Ontvanger',
+                action: function (e, dt, node, config) {
+                    alert('Ontvanger!');
+                }
+            },
+
+            {
+                text: 'Regeling',
+                action: function (e, dt, node, config) {
+                    alert('Regeling!');
+                }
+            },
+
+            {
+                text: 'Beleidsartikel',
+                action: function (e, dt, node, config) {
+                    alert('Beleidsartikel!');
+                }
+            },
+
+        ],
 
 
         "columns": [
