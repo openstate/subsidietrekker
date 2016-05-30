@@ -7,9 +7,14 @@ streamer.py
 '''
 
 import json
-
+from flask import request
+from elasticsearch import Elasticsearch
 from app import app
-from elastic import *
+
+ES_CLUSTER = 'http://localhost:9200'
+ES_INDEX = 'sub'
+ES_TYPE = 'item'
+es = Elasticsearch(ES_CLUSTER)
 
 
 @app.route('/_form_streamer', methods=['GET', 'POST'])

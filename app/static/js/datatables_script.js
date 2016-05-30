@@ -28,13 +28,8 @@ $(function() {
             }
         },
 
-        // dom: 'Bfrtip',
-        // buttons: [
-        //         'excel',
-        //         'print'
-        // ],
-        dom: 'Bfrtip',        
-        buttons: [
+        "dom": 'Bfrtip',        
+        "buttons": [
             {
                 text: 'Overheid',
                 action: function ( e, dt, node, config ) {
