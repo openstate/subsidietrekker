@@ -46,36 +46,36 @@ $(function() {
             {
                 text: 'Ontvanger',
                 action: function (e, dt, node, config) {
-                    if(ontvanger.overheid) {
-                        ontvanger.overheid = false
+                    if(entities.ontvanger) {
+                        entities.ontvanger = false
                     } else { 
-                        ontvanger.overheid = true
+                        entities.ontvanger = true
                     }
-                    console.log("ontvanger: " + ontvanger.overheid);
+                    console.log("ontvanger: " + entities.ontvanger);
                 }
             },
 
             {
                 text: 'Regeling',
                 action: function (e, dt, node, config) {
-                    if(regeling.overheid) {
-                        regeling.overheid = false
+                    if(entities.regeling) {
+                        entities.regeling = false
                     } else { 
-                        regeling.overheid = true
+                        entities.regeling = true
                     }
-                    console.log("regeling: "+regeling.overheid);
+                    console.log("regeling: "+entities.regeling);
                 }
             },
 
             {
                 text: 'Beleidsartikel',
                 action: function (e, dt, node, config) {
-                    if(beleidsartikel.overheid) {
-                        beleidsartikel.overheid = false
+                    if(entities.beleidsartikel) {
+                        entities.beleidsartikel = false
                     } else { 
-                        beleidsartikel.overheid = true
+                        entities.beleidsartikel = true
                     }
-                    console.log("beleidsartikel: " +beleidsartikel.overheid);
+                    console.log("beleidsartikel: " +entities.beleidsartikel);
                 }
             },
 
