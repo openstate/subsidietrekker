@@ -33,28 +33,49 @@ $(function() {
             {
                 text: 'Overheid',
                 action: function ( e, dt, node, config ) {
-                    alert( 'Overheid!' );                   
+                    
+                    if(entities.overheid) {
+                        entities.overheid = false
+                    } else {
+                        entities.overheid = true
+                    }
+                    console.log("overheid: " + entities.overheid);
                 }                
             },
 
             {
                 text: 'Ontvanger',
                 action: function (e, dt, node, config) {
-                    alert('Ontvanger!');
+                    if(ontvanger.overheid) {
+                        ontvanger.overheid = false
+                    } else { 
+                        ontvanger.overheid = true
+                    }
+                    console.log("ontvanger: " + ontvanger.overheid);
                 }
             },
 
             {
                 text: 'Regeling',
                 action: function (e, dt, node, config) {
-                    alert('Regeling!');
+                    if(regeling.overheid) {
+                        regeling.overheid = false
+                    } else { 
+                        regeling.overheid = true
+                    }
+                    console.log("regeling: "+regeling.overheid);
                 }
             },
 
             {
                 text: 'Beleidsartikel',
                 action: function (e, dt, node, config) {
-                    alert('Beleidsartikel!');
+                    if(beleidsartikel.overheid) {
+                        beleidsartikel.overheid = false
+                    } else { 
+                        beleidsartikel.overheid = true
+                    }
+                    console.log("beleidsartikel: " +beleidsartikel.overheid);
                 }
             },
 
