@@ -23,8 +23,7 @@ $(function() {
             "url": "http://localhost:5000/_streamer",
             "type": "GET",
             "data": {
-                "test": "zisiztezt",
-                "tast": 12342542
+                "test": entities,
             }
         },
 
