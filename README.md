@@ -28,7 +28,7 @@ WTForms==2.1)
 1. Install ElasticSearch
 2. Put the ES mappings found @ /subsidietrekker/tools/es_mapping in the /sub/ index through a put request
 3. Create a virtual environment and install the required python modules ontop of it.
-4. Activate the venv and start the flask development server with "python <path>/app/main.py"
+4. Activate the venv and start the flask development server with "python PATH/app/main.py"
 5. The subsidietrekker dev server should now run @ http://localhost:5000/
 
 #Docs
