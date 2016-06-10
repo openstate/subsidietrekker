@@ -2,14 +2,52 @@
 
 {% block content %}
 
-<section id="home">
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Home</h2>
-                <hr>
-            </div>
-            De demo is <a href='/demo'>hier</a>.
-        </div></div></section>
+{% block table %}
+<section class="col-sm-6" id="table">
+<div class="col-lg-12 text-center">
+<h3>Table</h3><hr></div>
+    <table id="subs_list" class="display">
+        <thead>
+                <tr>
+                    <th>Overheid</th>
+                    <th>Regeling</th>
+                    <th>Ontvanger</th>
+                    <th>Beleid</th>
+                    <th>Realisatie</th>
+                    <th>Jaar</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+            <tr>
+                <th>{{d.overheid}}</th>
+                <th>{{d.regeling}}</th>
+                <th>{{d.ontvanger}}</th>
+                <th>{{d.beleid}}</th>
+                <th>{{d.realisatie}}</th>
+                <th>{{d.jaar}}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                    <th>Overheid</th>
+                    <th>Regeling</th>
+                    <th>Ontvanger</th>
+                    <th>Beleid</th>
+                    <th>Realisatie</th>
+                    <th>Jaar</th>
+            </tr>
+        </tfoot>
+    </table></section>
+{% endblock %}
+
+{% block viz %}
+<section class="col-sm-6" id="chart">
+<div id="chart">
+<svg></svg></div>
+</form>
+</section>
+{% endblock %}
+
 {% endblock %}

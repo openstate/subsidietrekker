@@ -80,7 +80,9 @@ $(function() {
         settings.ajax.data.buttons = entities;
         console.log( 'Search for '+table.search() );
 
-        d3.json('http://localhost:5000/_viz_streamer?query='+table.search(), function(error, json) {
+        var field_names = Object.keys(entities);
+        var fields_for_request = field_names.map(function (f) {return 'buttons[' + f + ']=' + (entities[f] ? 'true' : 'false')});
+        d3.json('http://localhost:5000/_viz_streamer?query='+table.search() + '&' + fields_for_request.join('&'), function(error, json) {
             if (error) return console.warn(error);
             data = json;
 

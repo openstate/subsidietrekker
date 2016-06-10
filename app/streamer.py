@@ -38,11 +38,12 @@ def streamer(simple_search_dump={}):
 
     def datatables_streamer():
 
+        result = {}
+
+
         search = request.args.get('search[value]')
-        #fields = request.args.get('buttons')
         draw = request.args.get('draw')
         sort = request.args.get('order[0][dir]')
-        result = {}
 
         fields = []
         available_fields = ['overheid', 'ontvanger', 'beleidsartikel', 'regeling']
@@ -103,15 +104,20 @@ def streamer(simple_search_dump={}):
 
 @app.route('/_viz_streamer')
 def viz_streamer():
-    # test = [{'overheid': 1, 'realisatie': 34}, {'overheid': 1, 'realisatie': 34}, {'overheid': 1, 'realisatie': 34}]
 
+    search = request.args.get('query') or 'test'
+    fields = []
+    available_fields = ['overheid', 'ontvanger', 'beleidsartikel', 'regeling']
+    for field in available_fields:
+        if request.args.get('buttons[%s]' % (field,)) == u'true':
+            fields.append(field)
 
     es_query = {
                     "query": {
                         "simple_query_string": {
                             "query": search,
                             "analyzer": "snowball",
-                            "fields": ['_all'], #fields,
+                            "fields": fields,
                             "default_operator": "and"
                         }
                     },
@@ -133,5 +139,5 @@ def viz_streamer():
     hits = query['aggregations']['ontvangers']['buckets']
     data = [hit for hit in hits]
 
-    # print data
+    print es_query
     return json.dumps(data)
