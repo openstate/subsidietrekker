@@ -63,9 +63,7 @@ def streamer(simple_search_dump={}):
                     }
 
 
-        # if search == '':
-        #     query = es.search(index=ES_INDEX)
-        # else:
+
         query = es.search(index=ES_INDEX, size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
 
         total_set = es.search(index=ES_INDEX)
@@ -79,7 +77,8 @@ def streamer(simple_search_dump={}):
         result['recordsTotal'] = total_records
         result['recordsFiltered'] = found_total_records
         result['data'] = found_results
-        print fields
+
+        print 'Current searched fields: %s' % fields
         return result
 
 
@@ -106,7 +105,6 @@ def streamer(simple_search_dump={}):
 def viz_streamer():
     # test = [{'overheid': 1, 'realisatie': 34}, {'overheid': 1, 'realisatie': 34}, {'overheid': 1, 'realisatie': 34}]
 
-    search = request.args.get('query') or 'test'
 
     es_query = {
                     "query": {

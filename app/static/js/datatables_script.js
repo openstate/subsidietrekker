@@ -11,10 +11,6 @@ var entities = {
     beleidsartikel: true
 }
 
-// var buttonCheck = function() {
-//     entities = entities;
-// }
-
 $(function() {
 
     var table = $("#subs_list")
@@ -29,9 +25,6 @@ $(function() {
                 "buttons": entities,
             }
         },
-        // "initComplete": function(settings, json) {
-        //     buttonCheck();
-        //   },
 
         "dom": 'Bfrtip',        
         "buttons": [
@@ -40,14 +33,13 @@ $(function() {
                 action: function ( e, dt, node, config ) {
                     entities.overheid = !entities.overheid;
                     console.log("overheid: " + entities.overheid);
-                    // table.ajax.reload(buttonCheck());
                 }
             },
 
             {
                 text: 'Ontvanger',
                 action: function (e, dt, node, config) {
-                    entities.ontvanger != entities.ontvanger;
+                    entities.ontvanger = !entities.ontvanger;
                     console.log("ontvanger: " + entities.ontvanger);
                 }
             },
@@ -55,7 +47,7 @@ $(function() {
             {
                 text: 'Regeling',
                 action: function (e, dt, node, config) {
-                    entities.regeling != entities.regeling;
+                    entities.regeling = !entities.regeling;
                     console.log("regeling: "+entities.regeling);
                 }
             },
@@ -63,8 +55,8 @@ $(function() {
             {
                 text: 'Beleidsartikel',
                 action: function (e, dt, node, config) {
-                    entities.beleidsartikel != entities.beleidsartikel;
-                    console.log("beleidsartikel: " +entities.beleidsartikel);
+                    entities.beleidsartikel = !entities.beleidsartikel;
+                    console.log("beleidsartikel: " + entities.beleidsartikel);
                 }
             },
 
@@ -84,7 +76,8 @@ $(function() {
     });
 
     table.on( 'order.dt',  function () { console.log( 'Order' ); } )
-    .on( 'search.dt', function () {
+    .on( 'search.dt', function (e, settings) {
+        settings.ajax.data.buttons = entities;
         console.log( 'Search for '+table.search() );
 
         d3.json('http://localhost:5000/_viz_streamer?query='+table.search(), function(error, json) {
