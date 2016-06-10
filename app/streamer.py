@@ -44,13 +44,18 @@ def streamer(simple_search_dump={}):
         sort = request.args.get('order[0][dir]')
         result = {}
 
+        fields = []
+        available_fields = ['overheid', 'ontvanger', 'beleidsartikel', 'regeling']
+        for field in available_fields:
+            if request.args.get('buttons[%s]' % (field,)) == u'true':
+                fields.append(field)
 
         es_query = {
                         "query": {
                             "simple_query_string": {
                                 "query": search,
                                 "analyzer": "snowball",
-                                "fields": ['_all'], #fields,
+                                "fields": fields,
                                 "default_operator": "and"
                             }
                         },
@@ -74,7 +79,7 @@ def streamer(simple_search_dump={}):
         result['recordsTotal'] = total_records
         result['recordsFiltered'] = found_total_records
         result['data'] = found_results
-
+        print fields
         return result
 
 

@@ -8,9 +8,12 @@ var entities = {
     overheid: true,
     ontvanger: true,
     regeling: true,
-    Beleidsartikel: true
-
+    beleidsartikel: true
 }
+
+// var buttonCheck = function() {
+//     entities = entities;
+// }
 
 $(function() {
 
@@ -23,9 +26,12 @@ $(function() {
             "url": "http://localhost:5000/_streamer",
             "type": "GET",
             "data": {
-                "test": entities,
+                "buttons": entities,
             }
         },
+        // "initComplete": function(settings, json) {
+        //     buttonCheck();
+        //   },
 
         "dom": 'Bfrtip',        
         "buttons": [
@@ -39,7 +45,8 @@ $(function() {
                         entities.overheid = true
                     }
                     console.log("overheid: " + entities.overheid);
-                }                
+                    // table.ajax.reload(buttonCheck());
+                }
             },
 
             {
@@ -89,7 +96,6 @@ $(function() {
             { "data": "realisatie", "name": "realisatie" },
             { "data": "jaar", "name": "jaar" }
         ],
-
 
 
     });
