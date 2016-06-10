@@ -38,12 +38,7 @@ $(function() {
             {
                 text: 'Overheid',
                 action: function ( e, dt, node, config ) {
-                    
-                    if(entities.overheid) {
-                        entities.overheid = false
-                    } else {
-                        entities.overheid = true
-                    }
+                    entities.overheid = !entities.overheid;
                     console.log("overheid: " + entities.overheid);
                     // table.ajax.reload(buttonCheck());
                 }
@@ -52,11 +47,7 @@ $(function() {
             {
                 text: 'Ontvanger',
                 action: function (e, dt, node, config) {
-                    if(entities.ontvanger) {
-                        entities.ontvanger = false
-                    } else { 
-                        entities.ontvanger = true
-                    }
+                    entities.ontvanger != entities.ontvanger;
                     console.log("ontvanger: " + entities.ontvanger);
                 }
             },
@@ -64,11 +55,7 @@ $(function() {
             {
                 text: 'Regeling',
                 action: function (e, dt, node, config) {
-                    if(entities.regeling) {
-                        entities.regeling = false
-                    } else { 
-                        entities.regeling = true
-                    }
+                    entities.regeling != entities.regeling;
                     console.log("regeling: "+entities.regeling);
                 }
             },
@@ -76,11 +63,7 @@ $(function() {
             {
                 text: 'Beleidsartikel',
                 action: function (e, dt, node, config) {
-                    if(entities.beleidsartikel) {
-                        entities.beleidsartikel = false
-                    } else { 
-                        entities.beleidsartikel = true
-                    }
+                    entities.beleidsartikel != entities.beleidsartikel;
                     console.log("beleidsartikel: " +entities.beleidsartikel);
                 }
             },
