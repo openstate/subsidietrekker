@@ -9,12 +9,10 @@ streamer.py
 import json
 from flask import request
 from elasticsearch import Elasticsearch
-from app import app
+from app import app, ES_SETTINGS
 
-ES_CLUSTER = 'http://localhost:9200'
-ES_INDEX = 'sub'
-ES_TYPE = 'item'
-es = Elasticsearch(ES_CLUSTER)
+
+es = Elasticsearch(ES_SETTINGS['ES_CLUSTER'])
 
 
 @app.route('/_form_streamer', methods=['GET', 'POST'])
@@ -65,9 +63,9 @@ def streamer(simple_search_dump={}):
 
 
 
-        query = es.search(index=ES_INDEX, size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
+        query = es.search(index=ES_SETTINGS['ES_INDEX'], size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
 
-        total_set = es.search(index=ES_INDEX)
+        total_set = es.search(index=ES_SETTINGS['ES_INDEX'])
         total_records = total_set['hits']['total']
         
         found_set = query
@@ -132,7 +130,7 @@ def viz_streamer():
                 }
 
 
-    query = es.search(index=ES_INDEX, body=es_query)
+    query = es.search(index=ES_SETTINGS['ES_INDEX'], body=es_query)
 
 
 
