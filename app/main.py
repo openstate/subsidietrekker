@@ -9,9 +9,6 @@ main.py
 
 
 from app import app
-
-
-from forms import *
 from views import *
 from streamer import *
 

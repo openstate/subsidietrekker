@@ -15,12 +15,12 @@ from app import app, ES_SETTINGS
 es = Elasticsearch(ES_SETTINGS['ES_CLUSTER'])
 
 
-@app.route('/_form_streamer', methods=['GET', 'POST'])
-def form_streamer():
-    simple_search_dump = request.args.get('overheid') 
+# @app.route('/_form_streamer', methods=['GET', 'POST'])
+# def form_streamer():
+#     simple_search_dump = request.args.get('overheid') 
 
-    # print simple_search_dump
-    return(simple_search_dump)
+#     # print simple_search_dump
+#     return(simple_search_dump)
 
 
 # The new steamer function WIP
