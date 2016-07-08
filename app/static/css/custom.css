@@ -10,3 +10,8 @@
 #chart svg {
         height: 400px;
     }
+
+a.dt-button {
+    border: 1px solid black;
+    background-color: yellow;
+}

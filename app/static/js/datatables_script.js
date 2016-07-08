@@ -11,6 +11,7 @@ var entities = {
     beleidsartikel: true
 }
 
+
 $(function() {
 
     var table = $("#subs_list")
@@ -33,6 +34,11 @@ $(function() {
                 action: function ( e, dt, node, config ) {
                     entities.overheid = !entities.overheid;
                     console.log("overheid: " + entities.overheid);
+                    if (entities.overheid) {
+                        $('a.dt-button:eq(0)').css('background-color', 'yellow');
+                    } else {
+                        $('a.dt-button:eq(0)').css('background-color', 'purple');
+                    }
                 }
             },
 
@@ -41,6 +47,11 @@ $(function() {
                 action: function (e, dt, node, config) {
                     entities.ontvanger = !entities.ontvanger;
                     console.log("ontvanger: " + entities.ontvanger);
+                    if (entities.ontvanger) {
+                        $('a.dt-button:eq(1)').css('background-color', 'yellow');
+                    } else {
+                        $('a.dt-button:eq(1)').css('background-color', 'purple');
+                    }
                 }
             },
 
@@ -49,6 +60,11 @@ $(function() {
                 action: function (e, dt, node, config) {
                     entities.regeling = !entities.regeling;
                     console.log("regeling: "+entities.regeling);
+                    if (entities.regeling) {
+                        $('a.dt-button:eq(2)').css('background-color', 'yellow');
+                    } else {
+                        $('a.dt-button:eq(2)').css('background-color', 'purple');
+                    }
                 }
             },
 
@@ -57,6 +73,11 @@ $(function() {
                 action: function (e, dt, node, config) {
                     entities.beleidsartikel = !entities.beleidsartikel;
                     console.log("beleidsartikel: " + entities.beleidsartikel);
+                    if (entities.beleidsartikel) {
+                        $('a.dt-button:eq(3)').css('background-color', 'yellow');
+                    } else {
+                        $('a.dt-button:eq(3)').css('background-color', 'purple');
+                    }
                 }
             },
 
