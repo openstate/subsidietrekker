@@ -14,7 +14,7 @@ from elasticsearch import Elasticsearch, helpers
 
 # ElasticSearch config info
 ES_CLUSTER = 'http://localhost:9200'
-ES_INDEX = 'subtest'
+ES_INDEX = '13juli'
 ES_TYPE = 'item'
 es = Elasticsearch(ES_CLUSTER)
 

@@ -34,11 +34,18 @@ $(function() {
                 action: function ( e, dt, node, config ) {
                     entities.overheid = !entities.overheid;
                     console.log("overheid: " + entities.overheid);
+
                     if (entities.overheid) {
-                        $('a.dt-button:eq(0)').css('background-color', 'yellow');
+                     $('a.dt-button:eq(0)').removeClass('button-unclicked');
                     } else {
-                        $('a.dt-button:eq(0)').css('background-color', 'purple');
+                     $('a.dt-button:eq(0)').addClass('button-unclicked');
                     }
+                    
+                    // if (entities.overheid) {
+                    //     $('a.dt-button:eq(0)').addClass('button-clicked');
+                    // } else {
+                    //     $('a.dt-button:eq(0)').removeClass('button-clicked');
+                    // }
                 }
             },
 
@@ -48,9 +55,9 @@ $(function() {
                     entities.ontvanger = !entities.ontvanger;
                     console.log("ontvanger: " + entities.ontvanger);
                     if (entities.ontvanger) {
-                        $('a.dt-button:eq(1)').css('background-color', 'yellow');
+                        $('a.dt-button:eq(1)').removeClass('button-unclicked');
                     } else {
-                        $('a.dt-button:eq(1)').css('background-color', 'purple');
+                        $('a.dt-button:eq(1)').addClass('button-unclicked');
                     }
                 }
             },
@@ -61,9 +68,9 @@ $(function() {
                     entities.regeling = !entities.regeling;
                     console.log("regeling: "+entities.regeling);
                     if (entities.regeling) {
-                        $('a.dt-button:eq(2)').css('background-color', 'yellow');
+                        $('a.dt-button:eq(2)').removeClass('button-unclicked');
                     } else {
-                        $('a.dt-button:eq(2)').css('background-color', 'purple');
+                        $('a.dt-button:eq(2)').addClass('button-unclicked');
                     }
                 }
             },
@@ -74,9 +81,9 @@ $(function() {
                     entities.beleidsartikel = !entities.beleidsartikel;
                     console.log("beleidsartikel: " + entities.beleidsartikel);
                     if (entities.beleidsartikel) {
-                        $('a.dt-button:eq(3)').css('background-color', 'yellow');
+                        $('a.dt-button:eq(3)').removeClass('button-unclicked');
                     } else {
-                        $('a.dt-button:eq(3)').css('background-color', 'purple');
+                        $('a.dt-button:eq(3)').addClass('button-unclicked');
                     }
                 }
             },

@@ -23,80 +23,60 @@ es = Elasticsearch(ES_SETTINGS['ES_CLUSTER'])
 #     return(simple_search_dump)
 
 
-# The new steamer function WIP
-@app.route('/_streamer', methods=['GET', 'POST'])
-def streamer(simple_search_dump={}):
-
-
-
-    da_dump = {}
-
-    # simple_search_dump = request.args.get('overheid') 
-    viz_options_dump = {}
-
-    def datatables_streamer():
-
-        result = {}
-
-
-        search = request.args.get('search[value]')
-        draw = request.args.get('draw')
-        sort = request.args.get('order[0][dir]')
-
-        fields = []
-        available_fields = ['overheid', 'ontvanger', 'beleidsartikel', 'regeling']
-        for field in available_fields:
-            if request.args.get('buttons[%s]' % (field,)) == u'true':
-                fields.append(field)
-
-        es_query = {
-                        "query": {
-                            "simple_query_string": {
-                                "query": search,
-                                "analyzer": "snowball",
-                                "fields": fields,
-                                "default_operator": "and"
-                            }
-                        },
-                        "sort": {"overheid": {"order": sort}}
-                    }
-
-
-
-        query = es.search(index=ES_SETTINGS['ES_INDEX'], size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
-
-        total_set = es.search(index=ES_SETTINGS['ES_INDEX'])
-        total_records = total_set['hits']['total']
-        
-        found_set = query
-        found_total_records = found_set['hits']['total']
-        found_results = [result['_source'] for result in found_set['hits']['hits']]
-
-        result['draw'] = draw
-        result['recordsTotal'] = total_records
-        result['recordsFiltered'] = found_total_records
-        result['data'] = found_results
-
-        print 'Current searched fields: %s' % fields
-        return result
-
-
-    def d3_streamer():
-        
-        return {}
-
-
+@app.route('/_streamer', methods=['GET'])
+def streamer():
+    '''
+    Streamer function.
+    Offers ElasticSearch index data to DataTables asynchronously.
+    '''
+    result = {}
     
-    datatables_dict = datatables_streamer()
-    d3_dict = d3_streamer()
+    # Get current values from datatables
+    search = request.args.get('search[value]')
+    draw = request.args.get('draw')
+    sort = request.args.get('order[0][dir]')
 
-    for d in [datatables_dict, d3_dict]:
-        da_dump.update(d)
+    # Check for active search fields
+    fields = []
+    available_fields = ['overheid', 'ontvanger', 'beleidsartikel', 'regeling']
+    for field in available_fields:
+        if request.args.get('buttons[%s]' % (field,)) == u'true':
+            fields.append(field)
 
-    # print da_dump
+    # Create the ElasticSearch simple_query_string         
+    es_query = {
+                    "query": {
+                        "simple_query_string": {
+                            "query": search,
+                            "analyzer": "snowball",
+                            "fields": fields,
+                            "default_operator": "and"
+                        }
+                    },
+                    "sort": {"overheid": {"order": sort}} # FIX
+                }
+
+
+    # Query the ES index using the elasticsearch module
+    query = es.search(index=ES_SETTINGS['ES_INDEX'], size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
+
+    # Collect total records in ES index
+    total_set = es.search(index=ES_SETTINGS['ES_INDEX'])
+    total_records = total_set['hits']['total']
     
-    print ('passed dump: %s' % simple_search_dump)
-    return json.dumps(da_dump)
+    # Collect found results
+    found_set = query
+    found_total_records = found_set['hits']['total']
+    found_results = [result['_source'] for result in found_set['hits']['hits']]
+
+    # Create dict of results 
+    result['draw'] = draw
+    result['recordsTotal'] = total_records
+    result['recordsFiltered'] = found_total_records
+    result['data'] = found_results
+
+    # Jsonify and return the results
+    return json.dumps(result)
 
 
 

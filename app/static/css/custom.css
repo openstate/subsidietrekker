@@ -11,7 +11,12 @@
         height: 400px;
     }
 
-a.dt-button {
+.dt-button {
     border: 1px solid black;
     background-color: yellow;
+}
+
+
+.dt-button.button-unclicked {
+    background-color: purple;
 }
