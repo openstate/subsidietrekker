@@ -12,11 +12,16 @@
     }
 
 .dt-button {
-    border: 1px solid black;
-    background-color: yellow;
+    background-color: #f2f2f2;
+    color: #3d4a4c;
+    margin-right: 5px;
+    padding: 10px;
 }
 
+.dt-button a {
+    color: #3d4a4c;
+}
 
 .dt-button.button-unclicked {
-    background-color: purple;
+    background-color: #f08382;
 }

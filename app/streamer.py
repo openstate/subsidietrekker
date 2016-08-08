@@ -117,5 +117,5 @@ def viz_streamer():
     hits = query['aggregations']['ontvangers']['buckets']
     data = [hit for hit in hits]
 
-    print es_query
+    print 'viz: ', es_query
     return json.dumps(data)
