@@ -1,0 +1,15 @@
+c-subsidietrekker-nginx:
+    build: .
+    dockerfile: Dockerfile-nginx
+    volumes:
+        - ../app/static/:/usr/share/nginx/html/static/
+    links:
+        - c-subsidietrekker-app
+c-subsidietrekker-app:
+    build: .
+    volumes:
+        - ../app/:/opt/subsidietrekker
+    links:
+        - c-subsidietrekker-elasticsearch
+c-subsidietrekker-elasticsearch:
+    image: elasticsearch:2.3.5

@@ -12,8 +12,10 @@ import os
 import json
 from elasticsearch import Elasticsearch, helpers
 
-# ElasticSearch config info
-ES_CLUSTER = 'http://localhost:9200'
+# ElasticSearch config info; change the IP address to the current
+# address of the 'docker_c-subsidietrekker-elasticsearch_1' docker
+# container
+ES_CLUSTER = 'http://172.17.0.6:9200'
 ES_INDEX = '13juli'
 ES_TYPE = 'item'
 es = Elasticsearch(ES_CLUSTER)
@@ -26,7 +28,7 @@ bulk_data = []
 # Open .json files in /json, load items as values in temp_item dict, append dicts to new_data list
 for filename in os.listdir(os.getcwd() + '/json/'):
     if filename.endswith('.json'):
-        with open(filename) as f:
+        with open(os.getcwd() + '/json/' + filename) as f:
             data = json.load(f)
         for item in data['rows']:
             temp_item = {}

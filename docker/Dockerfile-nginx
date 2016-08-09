@@ -1,0 +1,14 @@
+FROM nginx:1.11.1
+MAINTAINER Sicco van Sas <sicco@openstate.eu>
+
+RUN echo 'Europe/Amsterdam' > /etc/timezone
+
+WORKDIR /usr/share/nginx/html
+
+# Note that by default this nginx installation retrieves its
+# configuration only from the conf.d folder and not from sites-enabled!
+ADD nginx.conf /etc/nginx/
+ADD nginx-site.conf /etc/nginx/conf.d/default.conf
+
+# Debug: use the nginx binary which was compiled with '--with-debug'
+# CMD ["nginx-debug", "-g", "daemon off;"]
