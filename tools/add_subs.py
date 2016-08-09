@@ -16,7 +16,7 @@ from elasticsearch import Elasticsearch, helpers
 # address of the 'docker_c-subsidietrekker-elasticsearch_1' docker
 # container
 ES_CLUSTER = 'http://172.17.0.6:9200'
-ES_INDEX = '13juli'
+ES_INDEX = 'sub'
 ES_TYPE = 'item'
 es = Elasticsearch(ES_CLUSTER)
 
