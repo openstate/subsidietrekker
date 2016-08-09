@@ -11,7 +11,7 @@ Currently being maintained by Kevin Bowey for the Open State Foundation.
 * ```cd ../tools```
 * ```./update_ips.sh```
 * ```curl -XPUT 'http://<ip address of docker_c-subsidietrekker-elasticsearch_1>:9200/sub/' -d '@es_mapping'```
-* Create the folder ```tool/json``` and add the json data files
+* Create the folder ```tools/json``` and add the json data files
 * ```python add_subs.py```
 * Go to http://<ip address of docker_c-subsidietrekker-nginx_1>/
 
