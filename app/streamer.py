@@ -8,6 +8,7 @@ streamer.py
 
 import json
 from flask import request
+from flask_cors import cross_origin
 from elasticsearch import Elasticsearch
 from app import app, ES_SETTINGS
 
@@ -24,6 +25,7 @@ es = Elasticsearch(ES_SETTINGS['ES_CLUSTER'])
 
 
 @app.route('/_streamer', methods=['GET'])
+@cross_origin()
 def streamer():
     '''
     Streamer function.
@@ -81,6 +83,7 @@ def streamer():
 
 
 @app.route('/_viz_streamer')
+@cross_origin()
 def viz_streamer():
 
     search = request.args.get('query') or 'test'

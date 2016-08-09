@@ -7,6 +7,7 @@ RUN pip install \
   elasticsearch==2.3.0 \
   Flask \
   Flask-WTF==0.12 \
+  flask-cors==2.1.2 \
   itsdangerous==0.24 \
   Jinja2==2.8 \
   MarkupSafe==0.23 \
