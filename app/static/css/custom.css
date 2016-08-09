@@ -25,4 +25,9 @@
 
 .dt-button.button-unclicked {
     background-color: #f08382;
+
+}
+
+.dt-button:hover {
+    background-color: blue;
 }
