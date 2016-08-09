@@ -16,7 +16,7 @@ $(function() {
 
     var table = $("#subs_list")
     .DataTable({
-
+        "responsive": true,
         "processing": true,
         "serverSide": true,
         "ajax": {
