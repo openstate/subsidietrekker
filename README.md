@@ -8,7 +8,7 @@ Currently being maintained by Kevin Bowey for the Open State Foundation.
 #Installation
 * ```cd docker```
 * ```docker-compose up -d```
-* ```cd tools```
+* ```cd ../tools```
 * ```./update_ips.sh```
 * ```curl -XPUT 'http://<ip address of docker_c-subsidietrekker-elasticsearch_1>:9200/sub/' -d '@es_mapping'```
 * Create the folder ```tool/json``` and add the json data files
