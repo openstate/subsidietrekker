@@ -12,9 +12,6 @@ d3.json('http://localhost:5000/_viz_streamer', function(error, json) {
     if (error) return console.warn(error);
     data = json;
 
-    height = 960;
-    width = 540;
-
     nv.addGraph(function() {
         chart = nv.models.pieChart()
             .x(function(d) {return d.key})

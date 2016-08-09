@@ -1,0 +1,15 @@
+{
+  "name": "sage-starter",
+  "homepage": "https://twolanedesign.com",
+  "authors": [
+    "Micah Cambre <micah@twolanedesign.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "2.2.3",
+    "bootstrap-sass": "^3.3.7"
+  },
+  "overrides": {
+  }
+}
