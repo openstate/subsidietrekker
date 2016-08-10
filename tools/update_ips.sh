@@ -17,4 +17,5 @@ if [[ $ip ]]
 then
     echo $ip
     sed -i "s/http:\/\/[^:]*/http:\/\/$ip/g" ../app/app.py
+    sed -i "s/http:\/\/[^:]*/http:\/\/$ip/g" ../app/add_subs.py
 fi  
