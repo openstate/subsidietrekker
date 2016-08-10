@@ -20,7 +20,7 @@ $(function() {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "http://localhost:5000/_streamer",
+            "url": "http://test.subsidietrekker.nl/_streamer",
             "type": "GET",
             "data": {
                 "buttons": entities,
@@ -110,7 +110,7 @@ $(function() {
 
         var field_names = Object.keys(entities);
         var fields_for_request = field_names.map(function (f) {return 'buttons[' + f + ']=' + (entities[f] ? 'true' : 'false')});
-        d3.json('http://localhost:5000/_viz_streamer?query='+table.search() + '&' + fields_for_request.join('&'), function(error, json) {
+        d3.json('http://test.subsidietrekker.nl/_viz_streamer?query='+table.search() + '&' + fields_for_request.join('&'), function(error, json) {
             if (error) return console.warn(error);
             data = json;
 
