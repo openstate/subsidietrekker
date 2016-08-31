@@ -34,7 +34,7 @@ def streamer():
     result = {}
 
     # Get current values from datatables
-    search = request.args.get('search[value]')
+    search = request.args.get('search[value]', u'')
     draw = request.args.get('draw')
     sort = request.args.get('order[0][dir]')
 
@@ -46,18 +46,23 @@ def streamer():
             fields.append(field)
 
     # Create the ElasticSearch simple_query_string
-    es_query = {
-                    "query": {
-                        "simple_query_string": {
-                            "query": search,
-                            "analyzer": "snowball",
-                            "fields": fields,
-                            "default_operator": "and"
-                        }
-                    },
-                    "sort": {"overheid": {"order": sort}} # FIX
-                }
 
+    if unicode(search).strip() != u'':
+        query_part = {"query": {
+            "simple_query_string": {
+                "query": search,
+                "analyzer": "snowball",
+                "fields": fields,
+                "default_operator": "and"
+            }
+        }}
+    else:
+        query_part = {}
+
+    es_query = {
+        "sort": {"overheid": {"order": sort}} # FIX
+    }
+    es_query.update(query_part)
 
     # Query the ES index using the elasticsearch module
     query = es.search(index=ES_SETTINGS['ES_INDEX'], size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
@@ -86,32 +91,36 @@ def streamer():
 @cross_origin()
 def viz_streamer():
 
-    search = request.args.get('query') or 'test'
+    search = request.args.get('query', None)
     fields = []
     available_fields = ['overheid', 'ontvanger', 'beleidsartikel', 'regeling']
     for field in available_fields:
         if request.args.get('buttons[%s]' % (field,)) == u'true':
             fields.append(field)
 
-    es_query = {
-                    "query": {
-                        "simple_query_string": {
-                            "query": search,
-                            "analyzer": "snowball",
-                            "fields": fields,
-                            "default_operator": "and"
-                        }
-                    },
-                    "size": 0,
-                    "aggs": {
-                        "ontvangers": {
-                            "terms": {
-                                "field": "ontvanger.raw"
-                            }
-                        }
-                    }
-                }
+    if search is not None:
+        query_part = {"query": {
+            "simple_query_string": {
+                "query": search,
+                "analyzer": "snowball",
+                "fields": fields,
+                "default_operator": "and"
+            }
+        }}
+    else:
+        query_part = {}
 
+    es_query = {
+        "size": 0,
+        "aggs": {
+            "ontvangers": {
+                "terms": {
+                    "field": "ontvanger.raw"
+                }
+            }
+        }
+    }
+    es_query.update(query_part)
 
     query = es.search(index=ES_SETTINGS['ES_INDEX'], body=es_query)
 
