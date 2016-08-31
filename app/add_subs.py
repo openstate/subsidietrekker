@@ -17,7 +17,7 @@ from elasticsearch import Elasticsearch, helpers
 # container
 ES_CLUSTER = 'http://c-subsidietrekker-elasticsearch:9200'
 ES_INDEX = 'sub'
-ES_TYPE = 'item'
+ES_TYPE = 'subsidie'
 es = Elasticsearch(ES_CLUSTER)
 
 
