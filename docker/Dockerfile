@@ -19,7 +19,7 @@ RUN pip install \
   uwsgi
 
 # Production
-CMD uwsgi --socket 0.0.0.0:5000 -w app:main
+CMD uwsgi --socket 0.0.0.0:5000 -w main:main_app
 
 # Development
 #ENV FLASK_APP=main.py \

@@ -1,5 +1,5 @@
 # Subsidietrekker
-Search interface for subsidies from governments. This project is still in its development phase. 
+Search interface for subsidies from governments. This project is still in its development phase.
 Currently being maintained by Kevin Bowey for the Open State Foundation.
 
 #Required software
@@ -8,8 +8,7 @@ Currently being maintained by Kevin Bowey for the Open State Foundation.
 #Installation
 * ```cd docker```
 * ```docker-compose up -d```
-* ```cd ../tools```
-* ```./update_ips.sh```
+* ``` cd ..```
 * ```curl -XPUT 'http://<ip address of docker_c-subsidietrekker-elasticsearch_1>:9200/sub/' -d '@es_mapping'```
 * ```cd ../app``` and create the folder ```json``` and add the json data files containing the subsidies
 * ```docker exec -it docker_c-subsidietrekker-app_1 python add_subs.py```

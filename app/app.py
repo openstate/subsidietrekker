@@ -14,7 +14,7 @@ app.config['SECRET_KEY'] = 'iUH@#$OIHF(qa8f3oihjq32r'
 
 # Elastic Search settings
 ES_SETTINGS = {
-    'ES_CLUSTER': 'http://localhost:9200',
+    'ES_CLUSTER': 'http://c-subsidietrekker-elasticsearch:9200',
     'ES_INDEX': 'sub',
     'ES_TYPE': 'item',
 }

@@ -1,15 +1,26 @@
-c-subsidietrekker-nginx:
-    build: .
-    dockerfile: Dockerfile-nginx
+version: '2'
+services:
+  c-subsidietrekker-nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
     volumes:
         - ../app/static/:/usr/share/nginx/html/static/
-    links:
-        - c-subsidietrekker-app
-c-subsidietrekker-app:
-    build: .
+    ports:
+      - "80:80"
+    networks:
+      - subsidietrekker
+  c-subsidietrekker-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
         - ../app/:/opt/subsidietrekker
-    links:
-        - c-subsidietrekker-elasticsearch
-c-subsidietrekker-elasticsearch:
+    networks:
+      - subsidietrekker
+  c-subsidietrekker-elasticsearch:
     image: elasticsearch:2.3.5
+    networks:
+      - subsidietrekker
+networks:
+    subsidietrekker:

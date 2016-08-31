@@ -1,4 +1,4 @@
-''' 
+'''
 
 Subsidietrekker.nl
 
@@ -15,7 +15,7 @@ from elasticsearch import Elasticsearch, helpers
 # ElasticSearch config info; change the IP address to the current
 # address of the 'docker_c-subsidietrekker-elasticsearch_1' docker
 # container
-ES_CLUSTER = 'http://172.17.0.13:9200'
+ES_CLUSTER = 'http://c-subsidietrekker-elasticsearch:9200'
 ES_INDEX = 'sub'
 ES_TYPE = 'item'
 es = Elasticsearch(ES_CLUSTER)
