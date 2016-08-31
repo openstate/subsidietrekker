@@ -52,7 +52,7 @@ def streamer():
                             "query": search,
                             "analyzer": "snowball",
                             "fields": fields,
-                            "default_operator": "or"
+                            "default_operator": "and"
                         }
                     },
                     "sort": {"overheid": {"order": sort}} # FIX
@@ -99,7 +99,7 @@ def viz_streamer():
                             "query": search,
                             "analyzer": "snowball",
                             "fields": fields,
-                            "default_operator": "or"
+                            "default_operator": "and"
                         }
                     },
                     "size": 0,
