@@ -1,14 +1,14 @@
-// 
+//
 // Subsidietrekker.nl
-// 
+//
 //  d3_script.js
-// 
+//
 
 var chart;
 var chart_data;
 var data;
 
-d3.json('http://test.subsidietrekker.nl/_viz_streamer', function(error, json) {
+d3.json('/_viz_streamer', function(error, json) {
     if (error) return console.warn(error);
     data = json;
 

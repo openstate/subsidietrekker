@@ -18,7 +18,7 @@ es = Elasticsearch(ES_SETTINGS['ES_CLUSTER'])
 
 # @app.route('/_form_streamer', methods=['GET', 'POST'])
 # def form_streamer():
-#     simple_search_dump = request.args.get('overheid') 
+#     simple_search_dump = request.args.get('overheid')
 
 #     # print simple_search_dump
 #     return(simple_search_dump)
@@ -32,7 +32,7 @@ def streamer():
     Offers ElasticSearch index data to DataTables asynchronously.
     '''
     result = {}
-    
+
     # Get current values from datatables
     search = request.args.get('search[value]')
     draw = request.args.get('draw')
@@ -45,14 +45,14 @@ def streamer():
         if request.args.get('buttons[%s]' % (field,)) == u'true':
             fields.append(field)
 
-    # Create the ElasticSearch simple_query_string         
+    # Create the ElasticSearch simple_query_string
     es_query = {
                     "query": {
                         "simple_query_string": {
                             "query": search,
                             "analyzer": "snowball",
                             "fields": fields,
-                            "default_operator": "and"
+                            "default_operator": "or"
                         }
                     },
                     "sort": {"overheid": {"order": sort}} # FIX
@@ -65,13 +65,13 @@ def streamer():
     # Collect total records in ES index
     total_set = es.search(index=ES_SETTINGS['ES_INDEX'])
     total_records = total_set['hits']['total']
-    
+
     # Collect found results
     found_set = query
     found_total_records = found_set['hits']['total']
     found_results = [result['_source'] for result in found_set['hits']['hits']]
 
-    # Create dict of results 
+    # Create dict of results
     result['draw'] = draw
     result['recordsTotal'] = total_records
     result['recordsFiltered'] = found_total_records
@@ -99,7 +99,7 @@ def viz_streamer():
                             "query": search,
                             "analyzer": "snowball",
                             "fields": fields,
-                            "default_operator": "and"
+                            "default_operator": "or"
                         }
                     },
                     "size": 0,

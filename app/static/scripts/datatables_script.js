@@ -1,8 +1,8 @@
-// 
+//
 // Subsidietrekker.nl
-// 
+//
 // datatables_script.js
-// 
+//
 
 var entities = {
     overheid: true,
@@ -20,14 +20,14 @@ $(function() {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "http://test.subsidietrekker.nl/_streamer",
+            "url": "/_streamer",
             "type": "GET",
             "data": {
                 "buttons": entities,
             }
         },
 
-        "dom": 'Bfrtip',        
+        "dom": 'Bfrtip',
         "buttons": [
             {
                 text: 'Overheid',
@@ -40,7 +40,7 @@ $(function() {
                     } else {
                      $('a.dt-button:eq(0)').addClass('button-unclicked');
                     }
-                    
+
                     // if (entities.overheid) {
                     //     $('a.dt-button:eq(0)').addClass('button-clicked');
                     // } else {
@@ -110,7 +110,7 @@ $(function() {
 
         var field_names = Object.keys(entities);
         var fields_for_request = field_names.map(function (f) {return 'buttons[' + f + ']=' + (entities[f] ? 'true' : 'false')});
-        d3.json('http://test.subsidietrekker.nl/_viz_streamer?query='+table.search() + '&' + fields_for_request.join('&'), function(error, json) {
+        d3.json('/_viz_streamer?query='+table.search() + '&' + fields_for_request.join('&'), function(error, json) {
             if (error) return console.warn(error);
             data = json;
 

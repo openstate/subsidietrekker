@@ -4,12 +4,8 @@
             "properties": {
 
                 "overheid": {
-                    "type": "multi_field",
+                    "type": "string",
                     "fields": {
-                        "overheid": {
-                            "type": "string",
-                            "analyzer": "dutch"
-                        },
                         "raw": {
                             "type": "string",
                             "index": "not_analyzed"
@@ -18,12 +14,8 @@
                 },
 
                 "regeling": {
-                    "type": "multi_field",
+                    "type": "string",
                     "fields": {
-                        "regeling": {
-                            "type": "string",
-                            "analyzer": "dutch"
-                        },
                         "raw": {
                             "type": "string",
                             "index": "not_analyzed"
@@ -32,12 +24,8 @@
                 },
 
                 "ontvanger": {
-                    "type": "multi_field",
+                    "type": "string",
                     "fields": {
-                        "ontvanger": {
-                            "type": "string",
-                            "analyzer": "dutch"
-                        },
                         "raw": {
                             "type": "string",
                             "index": "not_analyzed"
@@ -46,12 +34,8 @@
                 },
 
                 "beleid": {
-                    "type": "multi_field",
+                    "type": "string",
                     "fields": {
-                        "beleid": {
-                            "type": "string",
-                            "analyzer": "dutch"
-                        },
                         "raw": {
                             "type": "string",
                             "index": "not_analyzed"
