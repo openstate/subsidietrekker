@@ -28,17 +28,11 @@ bulk_data = []
 # Open .json files in /json, load items as values in temp_item dict, append dicts to new_data list
 for filename in os.listdir(os.getcwd() + '/json/'):
     if filename.endswith('.json'):
+        print 'Importing data from %s' % (filename)
         with open(os.getcwd() + '/json/' + filename) as f:
             data = json.load(f)
-        print 'Importing data from %s' % (filename)
-        for item in data['rows']:
-            temp_item = {}
-            temp_item['overheid'] = item[0]
-            temp_item['regeling'] = item[1]
-            temp_item['ontvanger'] = item[2]
-            temp_item['beleid'] = item[3]
-            temp_item['realisatie'] = item[4]
-            temp_item['jaar'] = item[5]
+        for item in data:  # ['rows']:
+            temp_item = {k.lower(): v for k,v in item.iteritems()}
             new_data.append(temp_item)
 
 # Load new_data dicts as _source values in temp_bulk_item dicts, append temp dicts to bulk_data list

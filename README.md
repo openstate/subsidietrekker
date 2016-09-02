@@ -8,7 +8,7 @@ Currently being maintained by Kevin Bowey for the Open State Foundation.
 #Installation
 * ```cd docker```
 * ```docker-compose up -d```
-* ```docker exec -it docker exec -it docker_c-subsidietrekker-app_1 bash```
+* ```docker exec -it docker_c-subsidietrekker-app_1 bash```
 * ```curl -XPUT 'http://c-subsidietrekker-elasticsearch:9200/sub/' -d '@es_mapping'```
 * ```cd ../app``` and create the folder ```json``` and add the json data files containing the subsidies
 * ```docker exec -it docker_c-subsidietrekker-app_1 python add_subs.py```
