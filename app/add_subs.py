@@ -31,11 +31,11 @@ for filename in os.listdir(os.getcwd() + '/json/'):
         print 'Importing data from %s' % (filename)
         with open(os.getcwd() + '/json/' + filename) as f:
             data = json.load(f)
-        has_rows = False
+        has_rows = True
         try:
             x = len(data['rows'])
         except (AttributeError, TypeError, LookupError) as e:
-            has_rows = True
+            has_rows = False
         if has_rows:  # ugh, we have a wieird fusion tables export
             for item in data['rows']:
                 temp_item = {}
