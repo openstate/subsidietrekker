@@ -31,7 +31,12 @@ for filename in os.listdir(os.getcwd() + '/json/'):
         print 'Importing data from %s' % (filename)
         with open(os.getcwd() + '/json/' + filename) as f:
             data = json.load(f)
-        if data.has_key('rows'):  # ugh, we have a wieird fusion tables export
+        has_rows = False
+        try:
+            x = len(data['rows'])
+        except (AttributeError, LookupError) as e:
+            has_rows = True
+        if has_rows:  # ugh, we have a wieird fusion tables export
             for item in data['rows']:
                 temp_item = {}
                 temp_item['overheid'] = item[0]
