@@ -34,7 +34,7 @@ for filename in os.listdir(os.getcwd() + '/json/'):
         has_rows = False
         try:
             x = len(data['rows'])
-        except (AttributeError, LookupError) as e:
+        except (AttributeError, TypeError, LookupError) as e:
             has_rows = True
         if has_rows:  # ugh, we have a wieird fusion tables export
             for item in data['rows']:
