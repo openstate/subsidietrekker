@@ -33,6 +33,7 @@ for filename in os.listdir(os.getcwd() + '/json/'):
             data = json.load(f)
         if data.has_key('rows'):  # ugh, we have a wieird fusion tables export
             for item in data['rows']:
+                temp_item = {}
                 temp_item['overheid'] = item[0]
                 temp_item['regeling'] = item[1]
                 temp_item['ontvanger'] = item[2]
