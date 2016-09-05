@@ -31,9 +31,19 @@ for filename in os.listdir(os.getcwd() + '/json/'):
         print 'Importing data from %s' % (filename)
         with open(os.getcwd() + '/json/' + filename) as f:
             data = json.load(f)
-        for item in data:  # ['rows']:
-            temp_item = {k.lower(): v for k,v in item.iteritems()}
-            new_data.append(temp_item)
+        if data.has_key('rows'):  # ugh, we have a wieird fusion tables export
+            for item in data['rows']:
+                temp_item['overheid'] = item[0]
+                temp_item['regeling'] = item[1]
+                temp_item['ontvanger'] = item[2]
+                temp_item['beleid'] = item[3]
+                temp_item['realisatie'] = item[4]
+                temp_item['jaar'] = item[5]
+                new_data.append(temp_item)
+        else:
+            for item in data:  # ['rows']:
+                temp_item = {k.lower(): v for k,v in item.iteritems()}
+                new_data.append(temp_item)
 
 # Load new_data dicts as _source values in temp_bulk_item dicts, append temp dicts to bulk_data list
 for item in new_data:
