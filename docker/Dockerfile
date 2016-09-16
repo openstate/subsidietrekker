@@ -19,9 +19,9 @@ RUN pip install \
   uwsgi
 
 # Production
-CMD uwsgi --socket 0.0.0.0:5000 -w main:main_app
+# CMD uwsgi --socket 0.0.0.0:5000 -w main:main_app
 
 # Development
-#ENV FLASK_APP=main.py \
-#    FLASK_DEBUG=1
-#CMD flask run --host=0.0.0.0
+ENV FLASK_APP=main.py \
+   FLASK_DEBUG=1
+CMD flask run --host=0.0.0.0

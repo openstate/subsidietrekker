@@ -5,6 +5,8 @@ c-subsidietrekker-nginx:
         - ../app/static/:/usr/share/nginx/html/static/
     links:
         - c-subsidietrekker-app
+    ports:
+        - "80:80"
 c-subsidietrekker-app:
     build: .
     volumes:
