@@ -49,11 +49,12 @@ def streamer():
 
     if unicode(search).strip() != u'':
         query_part = {"query": {
-            "simple_query_string": {
+            "multi_match": {
+                "type": 'phrase_prefix',
                 "query": search,
+                "slop": 10,
                 "analyzer": "snowball",
                 "fields": fields,
-                "default_operator": "and"
             }
         }}
     else:
@@ -63,7 +64,7 @@ def streamer():
         "sort": {"overheid": {"order": sort}} # FIX
     }
     es_query.update(query_part)
-
+    print "stream:", es_query
     # Query the ES index using the elasticsearch module
     query = es.search(index=ES_SETTINGS['ES_INDEX'], size=request.args.get('length'), from_=request.args.get('start'), body=es_query)
 
@@ -100,11 +101,12 @@ def viz_streamer():
 
     if search is not None:
         query_part = {"query": {
-            "simple_query_string": {
+            "multi_match": {
+                "type": 'phrase_prefix',
                 "query": search,
+                "slop": 10,
                 "analyzer": "snowball",
-                "fields": fields,
-                "default_operator": "and"
+                "fields": fields
             }
         }}
     else:
