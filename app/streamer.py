@@ -92,14 +92,14 @@ def streamer():
 @cross_origin()
 def viz_streamer():
 
-    search = request.args.get('query', None)
+    search = request.args.get('query', u'')
     fields = []
     available_fields = ['overheid', 'ontvanger', 'beleidsartikel', 'regeling']
     for field in available_fields:
         if request.args.get('buttons[%s]' % (field,)) == u'true':
             fields.append(field)
 
-    if search is not None:
+    if unicode(search).strip() != u'':
         query_part = {"query": {
             "multi_match": {
                 "type": 'phrase_prefix',
