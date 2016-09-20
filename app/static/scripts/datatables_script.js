@@ -16,6 +16,9 @@ $(function() {
 
     var table = $("#subs_list")
     .DataTable({
+        "language": {
+          "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Dutch.json"
+        },
         "responsive": true,
         "processing": true,
         "serverSide": true,
