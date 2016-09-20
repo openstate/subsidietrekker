@@ -36,7 +36,13 @@ def streamer():
     # Get current values from datatables
     search = request.args.get('search[value]', u'')
     draw = request.args.get('draw')
-    sort = request.args.get('order[0][dir]')
+    columns = ['overheid', 'ontvanger', 'realisatie', 'jaar', 'beleid', 'regeling']
+    order_column_index = request.args.get('order[0][column]', '0')
+    try:
+        order_column = columns[int(order_column_index)]
+    except (IndexError, ValueError) as e:
+        order_column = 0
+    direction = request.args.get('order[0][dir]', 'asc')
 
     # Check for active search fields
     fields = []
@@ -61,7 +67,7 @@ def streamer():
         query_part = {}
 
     es_query = {
-        "sort": {"overheid": {"order": sort}} # FIX
+        "sort": {order_column: {"order": direction}} # FIX
     }
     es_query.update(query_part)
     print "stream:", es_query
