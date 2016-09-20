@@ -15,10 +15,10 @@ d3.json('/_viz_streamer', function(error, json) {
     nv.addGraph(function() {
         chart = nv.models.pieChart()
             .x(function(d) {return d.key})
-            .y(function(d) {return d.doc_count})
+            .y(function(d) {return d.realisatie.sum})
             .showLabels(false).showLegend(false)
             .tooltipContent(function(obj, x, y, e) {
-              return '<h3>' + obj.data.key + '</h3><p>' + accounting.formatMoney(obj.data.doc_count, "€", 2, ".", ",") + '</p>';
+              return '<h3>' + obj.data.key + '</h3><p>' + accounting.formatMoney(obj.data.realisatie.sum, "€", 2, ".", ",") + '</p>';
             });
 
         chart_data = d3.select("#chart svg").datum(data);

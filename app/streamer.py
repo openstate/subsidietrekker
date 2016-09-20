@@ -118,7 +118,8 @@ def viz_streamer():
             "ontvangers": {
                 "terms": {
                     "field": "ontvanger.raw"
-                }
+                },
+                "aggs": { "realisatie": { "stats" : { "field" : "realisatie" } } }
             }
         }
     }
