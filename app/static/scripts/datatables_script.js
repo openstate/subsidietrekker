@@ -91,11 +91,17 @@ $(function() {
 
         "columns": [
             { "data": "overheid", "name": "overheid" },
-            { "data": "regeling", "name": "regeling" },
             { "data": "ontvanger", "name": "ontvanger" },
-            { "data": "beleid", "name": "beleid" },
-            { "data": "realisatie", "name": "realisatie" },
-            { "data": "jaar", "name": "jaar" }
+            {
+              "data": "realisatie",
+              "name": "realisatie",
+              render: function ( data, type, row ) {
+                return accounting.formatMoney(data, "€", 2, ".", ",");
+              }
+            },
+            { "data": "jaar", "name": "jaar" },
+            { "data": "regeling", "name": "regeling" },
+            { "data": "beleid", "name": "beleid" }
         ],
 
 
