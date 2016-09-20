@@ -16,7 +16,10 @@ d3.json('/_viz_streamer', function(error, json) {
         chart = nv.models.pieChart()
             .x(function(d) {return d.key})
             .y(function(d) {return d.doc_count})
-            .showLabels(true);
+            .showLabels(false).showLegend(false)
+            .tooltipContent(function(obj, x, y, e) {
+              return '<h3>' + obj.data.key + '</h3><p>' + accounting.formatMoney(obj.data.doc_count, "€", 2, ".", ",") + '</p>';
+            });
 
         chart_data = d3.select("#chart svg").datum(data);
         chart_data.transition().duration(350)
