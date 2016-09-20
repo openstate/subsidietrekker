@@ -95,6 +95,7 @@ $(function() {
             {
               "data": "realisatie",
               "name": "realisatie",
+              "className": "dt-right",
               render: function ( data, type, row ) {
                 return accounting.formatMoney(data, "€", 2, ".", ",");
               }
