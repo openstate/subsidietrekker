@@ -40,12 +40,7 @@ $(function() {
                     } else {
                      $('a.dt-button:eq(0)').addClass('button-unclicked');
                     }
-
-                    // if (entities.overheid) {
-                    //     $('a.dt-button:eq(0)').addClass('button-clicked');
-                    // } else {
-                    //     $('a.dt-button:eq(0)').removeClass('button-clicked');
-                    // }
+                    $("#subs_list").DataTable().ajax.reload();
                 }
             },
 
@@ -59,6 +54,7 @@ $(function() {
                     } else {
                         $('a.dt-button:eq(1)').addClass('button-unclicked');
                     }
+                    $("#subs_list").DataTable().ajax.reload();
                 }
             },
 
@@ -72,6 +68,7 @@ $(function() {
                     } else {
                         $('a.dt-button:eq(2)').addClass('button-unclicked');
                     }
+                    $("#subs_list").DataTable().ajax.reload();
                 }
             },
 
@@ -85,6 +82,7 @@ $(function() {
                     } else {
                         $('a.dt-button:eq(3)').addClass('button-unclicked');
                     }
+                    $("#subs_list").DataTable().ajax.reload();
                 }
             },
 
