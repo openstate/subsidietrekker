@@ -104,6 +104,9 @@ $(function() {
     });
 
     table.on( 'order.dt',  function () { console.log( 'Order' ); } )
+    .on( 'init.dt', function () {
+      $('.dt-buttons').prepend($('<div style="display: inline-block;margin-right: 15px;">Zoeken op:</div>'));
+    })
     .on( 'search.dt', function (e, settings) {
         settings.ajax.data.buttons = entities;
         console.log( 'Search for '+table.search() );
