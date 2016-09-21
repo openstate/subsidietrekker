@@ -113,7 +113,7 @@ $(function() {
 
     table.on( 'order.dt',  function () { console.log( 'Order' ); } )
     .on( 'init.dt', function () {
-      $('.dt-buttons').prepend($('<div style="display: inline-block;margin-right: 15px;">Zoeken op:</div>'));
+      $('.dt-buttons').parent().prepend($('<div style="display: block; clear: both; margin-right: 15px;margin-bottom: 15px;">Zoeken op:</div>'));
     })
     .on( 'search.dt', function (e, settings) {
         settings.ajax.data.buttons = entities;
