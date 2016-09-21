@@ -46,7 +46,7 @@ def streamer():
 
     # Check for active search fields
     fields = []
-    available_fields = ['overheid', 'ontvanger', 'beleidsartikel', 'regeling']
+    available_fields = ['overheid', 'ontvanger', 'beleid', 'regeling']
     for field in available_fields:
         if request.args.get('buttons[%s]' % (field,)) == u'true':
             fields.append(field)
@@ -100,7 +100,7 @@ def viz_streamer():
 
     search = request.args.get('query', u'')
     fields = []
-    available_fields = ['overheid', 'ontvanger', 'beleidsartikel', 'regeling']
+    available_fields = ['overheid', 'ontvanger', 'beleid', 'regeling']
     for field in available_fields:
         if request.args.get('buttons[%s]' % (field,)) == u'true':
             fields.append(field)

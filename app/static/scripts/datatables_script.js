@@ -8,7 +8,7 @@ var entities = {
     overheid: true,
     ontvanger: true,
     regeling: true,
-    beleidsartikel: true
+    beleid: true
 }
 
 
@@ -78,9 +78,9 @@ $(function() {
             {
                 text: 'Beleidsartikel',
                 action: function (e, dt, node, config) {
-                    entities.beleidsartikel = !entities.beleidsartikel;
-                    console.log("beleidsartikel: " + entities.beleidsartikel);
-                    if (entities.beleidsartikel) {
+                    entities.beleid = !entities.beleid;
+                    console.log("beleid: " + entities.beleid);
+                    if (entities.beleid) {
                         $('a.dt-button:eq(3)').removeClass('button-unclicked');
                     } else {
                         $('a.dt-button:eq(3)').addClass('button-unclicked');
