@@ -35,6 +35,13 @@ $(function() {
             {
                 text: 'Overheid',
                 action: function ( e, dt, node, config ) {
+                    var total_count = $('.button-unclicked').length;
+
+                    if (entities.overheid && (total_count >= 3)) {
+                      alert('Tenminste een kolom dient geselecteerd te worden.');
+                      return false;
+                    }
+
                     entities.overheid = !entities.overheid;
                     console.log("overheid: " + entities.overheid);
 
@@ -50,6 +57,13 @@ $(function() {
             {
                 text: 'Ontvanger',
                 action: function (e, dt, node, config) {
+                  var total_count = $('.button-unclicked').length;
+
+                  if (entities.ontvanger && (total_count >= 3)) {
+                    alert('Tenminste een kolom dient geselecteerd te worden.');
+                    return false;
+                  }
+
                     entities.ontvanger = !entities.ontvanger;
                     console.log("ontvanger: " + entities.ontvanger);
                     if (entities.ontvanger) {
@@ -64,6 +78,13 @@ $(function() {
             {
                 text: 'Regeling',
                 action: function (e, dt, node, config) {
+                  var total_count = $('.button-unclicked').length;
+
+                  if (entities.regeling && (total_count >= 3)) {
+                    alert('Tenminste een kolom dient geselecteerd te worden.');
+                    return false;
+                  }
+
                     entities.regeling = !entities.regeling;
                     console.log("regeling: "+entities.regeling);
                     if (entities.regeling) {
@@ -78,6 +99,13 @@ $(function() {
             {
                 text: 'Beleidsartikel',
                 action: function (e, dt, node, config) {
+                  var total_count = $('.button-unclicked').length;
+
+                  if (entities.beleid && (total_count >= 3)) {
+                    alert('Tenminste een kolom dient geselecteerd te worden.');
+                    return false;
+                  }
+
                     entities.beleid = !entities.beleid;
                     console.log("beleid: " + entities.beleid);
                     if (entities.beleid) {
