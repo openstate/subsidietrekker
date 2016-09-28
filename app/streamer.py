@@ -123,7 +123,8 @@ def viz_streamer():
         "aggs": {
             "ontvangers": {
                 "terms": {
-                    "field": "ontvanger.raw"
+                    "field": "ontvanger.raw",
+                    "order" : { "realisatie.sum" : "desc" }
                 },
                 "aggs": { "realisatie": { "stats" : { "field" : "realisatie" } } }
             }
