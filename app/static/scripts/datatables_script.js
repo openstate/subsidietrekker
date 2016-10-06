@@ -22,6 +22,7 @@ $(function() {
         "responsive": true,
         "processing": true,
         "serverSide": true,
+        "pagingType": "simple",
         "ajax": {
             "url": "/_streamer",
             "type": "GET",
