@@ -19,6 +19,7 @@ app.after_request(add_cors_header)
 
 # flask Secret Key
 app.config['SECRET_KEY'] = 'iUH@#$OIHF(qa8f3oihjq32r'
+app.config['PREFERRED_URL_SCHEME'] = 'https'
 
 # Elastic Search settings
 ES_SETTINGS = {
